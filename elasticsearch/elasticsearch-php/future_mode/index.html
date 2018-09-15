@@ -1,0 +1,2311 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="http://docs.flc.io/elasticsearch/elasticsearch-php/future_mode/">
+      
+      
+        <meta name="author" content="Flc">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Future 模式 - 叶子坑-文档库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../../#future" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://docs.flc.io" title="叶子坑-文档库" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                叶子坑-文档库
+              </span>
+              <span class="md-header-nav__topic">
+                Future 模式
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/flc1125/docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="首页" class="md-tabs__link">
+        首页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../php/features/7.2.x/" title="PHP" class="md-tabs__link">
+          PHP
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../elasticsearch-6.3/translation-instructions/" title="Elasticsearch" class="md-tabs__link">
+          Elasticsearch
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../devops/docker/" title="DevOps" class="md-tabs__link">
+          DevOps
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../more/git/" title="更多" class="md-tabs__link">
+          更多
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://docs.flc.io" title="叶子坑-文档库" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    叶子坑-文档库
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/flc1125/docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      PHP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        PHP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      PHP 各版本特性
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        PHP 各版本特性
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/features/7.2.x/" title="PHP 7.2.x" class="md-nav__link">
+      PHP 7.2.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/features/7.1.x/" title="PHP 7.1.x" class="md-nav__link">
+      PHP 7.1.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/features/7.0.x/" title="PHP 7.0.x" class="md-nav__link">
+      PHP 7.0.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/features/5.6.x/" title="PHP 5.6.x" class="md-nav__link">
+      PHP 5.6.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/features/5.5.x/" title="PHP 5.5.x" class="md-nav__link">
+      PHP 5.5.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/features/5.4.x/" title="PHP 5.4.x" class="md-nav__link">
+      PHP 5.4.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/features/5.3.x/" title="PHP 5.3.x" class="md-nav__link">
+      PHP 5.3.x
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      PHP PSR 编码规范
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        PHP PSR 编码规范
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/psr-0/" title="PHP PSR-0 自动加载规范" class="md-nav__link">
+      PHP PSR-0 自动加载规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/psr-1/" title="PHP PSR-1 基本代码规范" class="md-nav__link">
+      PHP PSR-1 基本代码规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/psr-2/" title="PHP PSR-2 代码风格规范" class="md-nav__link">
+      PHP PSR-2 代码风格规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/psr-3/" title="PHP PSR-3 日志接口规范" class="md-nav__link">
+      PHP PSR-3 日志接口规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/psr-4/" title="PHP PSR-4 自动载入Autoloader" class="md-nav__link">
+      PHP PSR-4 自动载入Autoloader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/psr-4-examples/" title="PHP PSR-4 相关示例" class="md-nav__link">
+      PHP PSR-4 相关示例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/psr/psr-7/" title="PHP PSR-7 HTTP消息接口" class="md-nav__link">
+      PHP PSR-7 HTTP消息接口
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/phpdoc/" title="PHPDoc 编码注释规范" class="md-nav__link">
+      PHPDoc 编码注释规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-cs-fixer/" title="PHP Coding Standards Fixer" class="md-nav__link">
+      PHP Coding Standards Fixer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      PHP 设计模式全集
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        PHP 设计模式全集
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-2" type="checkbox" id="nav-2-5-2">
+    
+    <label class="md-nav__link" for="nav-2-5-2">
+      创建型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-2">
+        创建型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/AbstractFactory/" title="抽象工厂模式（Abstract Factory）" class="md-nav__link">
+      抽象工厂模式（Abstract Factory）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Builder/" title="建造者模式（Builder）" class="md-nav__link">
+      建造者模式（Builder）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/FactoryMethod/" title="工厂方法模式（Factory Method）" class="md-nav__link">
+      工厂方法模式（Factory Method）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Multiton/" title="多例模式（Multiton）" class="md-nav__link">
+      多例模式（Multiton）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Pool/" title="对象池模式（Pool）" class="md-nav__link">
+      对象池模式（Pool）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Prototype/" title="原型模式（Prototype）" class="md-nav__link">
+      原型模式（Prototype）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/SimpleFactory/" title="简单工厂模式（Simple Factory）" class="md-nav__link">
+      简单工厂模式（Simple Factory）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Singleton/" title="单例模式（Singleton）" class="md-nav__link">
+      单例模式（Singleton）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/StaticFactory/" title="静态工厂模式（Static Factory）" class="md-nav__link">
+      静态工厂模式（Static Factory）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-3" type="checkbox" id="nav-2-5-3">
+    
+    <label class="md-nav__link" for="nav-2-5-3">
+      结构型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-3">
+        结构型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Adapter/" title="适配器模式（Adapter）" class="md-nav__link">
+      适配器模式（Adapter）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Bridge/" title="桥梁模式（Bridge）" class="md-nav__link">
+      桥梁模式（Bridge）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Composite/" title="组合模式（Composite）" class="md-nav__link">
+      组合模式（Composite）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/DataMapper/" title="数据映射模式（Data Mapper）" class="md-nav__link">
+      数据映射模式（Data Mapper）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Decorator/" title="装饰模式（Decorator）" class="md-nav__link">
+      装饰模式（Decorator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/DependencyInjection/" title="依赖注入模式（Dependency Injection）" class="md-nav__link">
+      依赖注入模式（Dependency Injection）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Facade/" title="门面模式（Facade）" class="md-nav__link">
+      门面模式（Facade）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/FluentInterface/" title="流接口模式（Fluent Interface）" class="md-nav__link">
+      流接口模式（Fluent Interface）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Flyweight/" title="享元模式（Flyweight）" class="md-nav__link">
+      享元模式（Flyweight）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Proxy/" title="代理模式（Proxy）" class="md-nav__link">
+      代理模式（Proxy）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Registry/" title="注册模式（Registry）" class="md-nav__link">
+      注册模式（Registry）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-4" type="checkbox" id="nav-2-5-4">
+    
+    <label class="md-nav__link" for="nav-2-5-4">
+      行为型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-4">
+        行为型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/ChainOfResponsibilities/" title="责任链模式（Chain Of Responsibilities）" class="md-nav__link">
+      责任链模式（Chain Of Responsibilities）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Command/" title="命令行模式（Command）" class="md-nav__link">
+      命令行模式（Command）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Iterator/" title="迭代器模式（Iterator）" class="md-nav__link">
+      迭代器模式（Iterator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Mediator/" title="中介者模式（Mediator）" class="md-nav__link">
+      中介者模式（Mediator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Memento/" title="备忘录模式（Memento）" class="md-nav__link">
+      备忘录模式（Memento）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/NullObject/" title="空对象模式（Null Object）" class="md-nav__link">
+      空对象模式（Null Object）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Observer/" title="观察者模式（Observer）" class="md-nav__link">
+      观察者模式（Observer）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Specification/" title="规格模式（Specification）" class="md-nav__link">
+      规格模式（Specification）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/State/" title="状态模式（State）" class="md-nav__link">
+      状态模式（State）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Strategy/" title="策略模式（Strategy）" class="md-nav__link">
+      策略模式（Strategy）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/TemplateMethod/" title="模板方法模式（Template Method）" class="md-nav__link">
+      模板方法模式（Template Method）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Visitor/" title="访问者模式（Visitor）" class="md-nav__link">
+      访问者模式（Visitor）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-5" type="checkbox" id="nav-2-5-5">
+    
+    <label class="md-nav__link" for="nav-2-5-5">
+      更多类型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-5">
+        更多类型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Delegation/" title="委托模式（Delegation）" class="md-nav__link">
+      委托模式（Delegation）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/ServiceLocator/" title="服务定位器模式（Service Locator）" class="md-nav__link">
+      服务定位器模式（Service Locator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Repository/" title="资源库模式（Repository）" class="md-nav__link">
+      资源库模式（Repository）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/EAV/" title="实体属性值模式（EAV 模式）" class="md-nav__link">
+      实体属性值模式（EAV 模式）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-6" type="checkbox" id="nav-2-5-6">
+    
+    <label class="md-nav__link" for="nav-2-5-6">
+      附录
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-6">
+        附录
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/Anti-pattern/" title="反面模式（Anti-pattern）" class="md-nav__link">
+      反面模式（Anti-pattern）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../php/php-design-patterns/design-pattern-reading/" title="PHP 设计模式阅读清单" class="md-nav__link">
+      PHP 设计模式阅读清单
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Elasticsearch
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Elasticsearch
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Elasticsearch 6.3 - 中文版
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        Elasticsearch 6.3 - 中文版
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../elasticsearch-6.3/translation-instructions/" title="翻译说明" class="md-nav__link">
+      翻译说明
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2">
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      入门
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../elasticsearch-6.3/getting-started/" title="入门" class="md-nav__link">
+      入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../elasticsearch-6.3/basic_concepts/" title="基本概念" class="md-nav__link">
+      基本概念
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Elasticsearch-PHP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Elasticsearch-PHP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../quickstart/" title="快速开始" class="md-nav__link">
+      快速开始
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configuration/" title="配置" class="md-nav__link">
+      配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../per_request_configuration/" title="按请求配置" class="md-nav__link">
+      按请求配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Future 模式
+      </label>
+    
+    <a href="./" title="Future 模式" class="md-nav__link md-nav__link--active">
+      Future 模式
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#future_1" title="使用 Future 模式" class="md-nav__link">
+    使用 Future 模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="更改批量值" class="md-nav__link">
+    更改批量值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="各种批量执行" class="md-nav__link">
+    各种批量执行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="警告" class="md-nav__link">
+    警告
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php_json_objects/" title="PHP 处理 JSON 数组或对象" class="md-nav__link">
+      PHP 处理 JSON 数组或对象
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../index_management_operations/" title="索引管理" class="md-nav__link">
+      索引管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../indexing_documents/" title="索引文档" class="md-nav__link">
+      索引文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../getting_documents/" title="获取文档" class="md-nav__link">
+      获取文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../updating_documents/" title="更新文档" class="md-nav__link">
+      更新文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deleting_documents/" title="删除文档" class="md-nav__link">
+      删除文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../search_operations/" title="搜索操作" class="md-nav__link">
+      搜索操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../namespaces/" title="命名空间" class="md-nav__link">
+      命名空间
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connection_pool/" title="连接池" class="md-nav__link">
+      连接池
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../selectors/" title="选择器" class="md-nav__link">
+      选择器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../serializers/" title="序列化器" class="md-nav__link">
+      序列化器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php_version_requirement/" title="PHP 版本需求" class="md-nav__link">
+      PHP 版本需求
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../community_dsls/" title="社区 DSLs" class="md-nav__link">
+      社区 DSLs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      DevOps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        DevOps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Docker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/docker/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1-2" type="checkbox" id="nav-4-1-2">
+    
+    <label class="md-nav__link" for="nav-4-1-2">
+      Dockerfile
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-1-2">
+        Dockerfile
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/docker/dockerfile/php/" title="PHP" class="md-nav__link">
+      PHP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/redis/" title="Redis" class="md-nav__link">
+      Redis
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      更多
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        更多
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/git/" title="Git 常用命令" class="md-nav__link">
+      Git 常用命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      中文技术文档的写作规范
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        中文技术文档的写作规范
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/title/" title="标题" class="md-nav__link">
+      标题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/text/" title="文本" class="md-nav__link">
+      文本
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/paragraph/" title="段落" class="md-nav__link">
+      段落
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/number/" title="数值" class="md-nav__link">
+      数值
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/marks/" title="标点符号" class="md-nav__link">
+      标点符号
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/structure/" title="文档体系" class="md-nav__link">
+      文档体系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/reference/" title="参考链接" class="md-nav__link">
+      参考链接
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#future_1" title="使用 Future 模式" class="md-nav__link">
+    使用 Future 模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="更改批量值" class="md-nav__link">
+    更改批量值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="各种批量执行" class="md-nav__link">
+    各种批量执行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="警告" class="md-nav__link">
+    警告
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flc1125/docs/edit/master/docs/elasticsearch/elasticsearch-php/future_mode.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="future">Future 模式<a class="headerlink" href="#future" title="Permanent link">#</a></h1>
+<p>客户端提供 future 模式（或叫异步模式）。future 模式允许批量发送请求（并行发送到集群），这对于提高性能和生产力有极大帮助。</p>
+<p>PHP 是单线程的脚本语言，然而 libcurl 的 multi interface 功能使得像 PHP 这种单线程的语言可以批量发送请求，从而获得并发性特征。批量请求是通过底层的多线程 libcurl 库并行的发送请求给 Elasticsearch，而返回给PHP的数据也是批量的。</p>
+<p>在单线程环境下，执行 <code>n</code> 个请求的时间等于 <code>n</code> 个请求时间相加。在 multi interface 功能下，执行 <code>n</code> 个请求的时间等于最慢的一个请求时间。</p>
+<p>除此以外，multi-interface 功能允许批量请求同时发送到不同的主机，这意味着 Elasticsearch-PHP 可以更高效地利用集群。</p>
+<h2 id="future_1">使用 Future 模式<a class="headerlink" href="#future_1" title="Permanent link">#</a></h2>
+<p>使用这种模式相对简单，只是你要写多一点代码。为了开启 future 模式，在 client 选项中增加 <code>future</code> 参数，并设置值为 <code>'lazy'</code> ：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+
+<span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nv">$future</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+</pre></div>
+
+<p>这里会返回一个 <em>future</em> 对象，而不是真正的响应数据。future 对象是待处理对象，它看起来就像是个占位符。你可以把 future 对象当成是普通对象在代码中传递使用。当你需要响应数据时，你可以解析 future 对象。如果 future 对象已经被解析，可以立即使用响应数据。如果 future 对象还没被解析完，那么解析动作会阻塞 PHP 脚本的执行，直到解析完成。</p>
+<p>在实际应用中，你可以通过设置 <code>future: lazy</code> 键值对构造一个请求队列，而返回的 future 对象直到解析完成，程序才会继续执行。无论什么时候，全部的请求都是以并行方式发送到集群，以异步方式返回给 curl。</p>
+<p>这听起来好复杂，但由于RingPHP的 <code>FutureArray</code> 接口，这些操作则变得很简单。它让 future 对象看起来像是一个关联数组。例如：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+
+<span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nv">$future</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+
+<span class="nv">$doc</span> <span class="o">=</span> <span class="nv">$future</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">];</span>    <span class="c1">// This call will block and force the future to resolve</span>
+</pre></div>
+
+<p>就像通常的响应数据那样，future 对象可以用迭代关联数组的方式解析特定的值（轮流解析未解析的请求和值）。这样就可以写成如下形式：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+<span class="nv">$futures</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$i</span><span class="p">,</span>
+        <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+        <span class="p">]</span>
+    <span class="p">];</span>
+
+    <span class="nv">$futures</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>     <span class="c1">//queue up the request</span>
+<span class="p">}</span>
+
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$futures</span> <span class="k">as</span> <span class="nv">$future</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// access future&#39;s values, causing resolution if necessary</span>
+    <span class="k">echo</span> <span class="nv">$future</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>请求队列会并行执行，执行后赋值给 futures 数组。每批请求默认为 100 个。</p>
+<p>如果你想强制解析 future 对象，但又不立刻获取响应数据。你可以用 future 对象的 <code>wait()</code> 方法来强制解析：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+<span class="nv">$futures</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$i</span><span class="p">,</span>
+        <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+        <span class="p">]</span>
+    <span class="p">];</span>
+
+    <span class="nv">$futures</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>     <span class="c1">//queue up the request</span>
+<span class="p">}</span>
+
+<span class="c1">//wait() forces future resolution and will execute the underlying curl batch</span>
+<span class="nv">$futures</span><span class="p">[</span><span class="mi">999</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">wait</span><span class="p">();</span>
+</pre></div>
+
+<h2 id="_1">更改批量值<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>默认的批量值为 100 个，这意味着在客户端强制 future 对象解析前（执行 <code>curl_multi</code> 调用），队列可以容纳 100 个请求。批量值可以更改，取决于你的需求。批量值的调整是通过配置 HTTP handler 时设置 <code>max_handles</code> 参数来实现：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span> 
+<span class="nv">$handlerParams</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;max_handles&#39;</span> <span class="o">=&gt;</span> <span class="mi">500</span>
+<span class="p">];</span>
+
+<span class="nv">$defaultHandler</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">defaultHandler</span><span class="p">(</span><span class="nv">$handlerParams</span><span class="p">);</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="na">setHandler</span><span class="p">(</span><span class="nv">$defaultHandler</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+</pre></div>
+
+<p>上面的设置会更改批量发送数量为 500。注意：不管队列数量是否为最大批量值，强制解析 future 对象都会引起底层的 curl 执行批量请求操作。在如下的示例中，只有 499 个对象加入队列，但最后的 future 对象被解析会引起强制发送批量请求：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span> 
+<span class="nv">$handlerParams</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;max_handles&#39;</span> <span class="o">=&gt;</span> <span class="mi">500</span>
+<span class="p">];</span>
+
+<span class="nv">$defaultHandler</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">defaultHandler</span><span class="p">(</span><span class="nv">$handlerParams</span><span class="p">);</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="na">setHandler</span><span class="p">(</span><span class="nv">$defaultHandler</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+
+<span class="nv">$futures</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">499</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$i</span><span class="p">,</span>
+        <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+        <span class="p">]</span>
+    <span class="p">];</span>
+
+    <span class="nv">$futures</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>     <span class="c1">//queue up the request</span>
+<span class="p">}</span>
+
+<span class="c1">// resolve the future, and therefore the underlying batch</span>
+<span class="nv">$body</span> <span class="o">=</span> <span class="nv">$future</span><span class="p">[</span><span class="mi">499</span><span class="p">][</span><span class="s1">&#39;body&#39;</span><span class="p">];</span>
+</pre></div>
+
+<h2 id="_2">各种批量执行<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>队列里面允许存在各种请求。比如，你可以把 get 请求、index 请求和 search 请求放到队列里面：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span> 
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+<span class="nv">$futures</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nv">$futures</span><span class="p">[</span><span class="s1">&#39;getRequest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>     <span class="c1">// First request</span>
+
+<span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nv">$futures</span><span class="p">[</span><span class="s1">&#39;indexRequest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>       <span class="c1">// Second request</span>
+
+<span class="nv">$params</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;query&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;match&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;client&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;future&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;lazy&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nv">$futures</span><span class="p">[</span><span class="s1">&#39;searchRequest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">search</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>      <span class="c1">// Third request</span>
+
+<span class="c1">// Resolve futures...blocks until network call completes</span>
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$futures</span><span class="p">[</span><span class="s1">&#39;searchRequest&#39;</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">];</span>
+
+<span class="c1">// Should return immediately, since the previous future resolved the entire batch</span>
+<span class="nv">$doc</span> <span class="o">=</span> <span class="nv">$futures</span><span class="p">[</span><span class="s1">&#39;getRequest&#39;</span><span class="p">][</span><span class="s1">&#39;_source&#39;</span><span class="p">];</span>
+</pre></div>
+
+<h2 id="_3">警告<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p>使用 future 模式时需要注意几点。最大也是最明显的问题是：你要自己去解析 future 对象。这挺麻烦的，而且偶尔会引起一些意料不到的状况。</p>
+<p>例如，假如你手动使用 <code>wait()</code> 方法解析，在需要重新构建 future 对象并解析的情况下，你也许要调用好几次 <code>wait()</code> 方法。这是因为每次重新构造 future 对象都会引起 future 对象的重新赋值（覆盖解析结果），所以每个 future 对象都要重新解析获取结果。</p>
+<p>如果你使用 ArrayInterface 返回的结果（ <code>$response['hits']['hits']</code> ）则不用进行额外处理。然而 FutureArrayInterface 就要全面解析 future 对象才能使用响应数据。</p>
+<p>另外一点是一些方法会失效。比如 exists 方法（ <code>$client-&gt;exists()</code> ,  <code>$client-&gt;indices()-&gt;exists</code> ,  <code>$client-&gt;indices-&gt;templateExists()</code> 等）在正常情况下会返回 true 或 false。</p>
+<p>当使用 future 模式时，future 对象还未封装好，这代表客户端无法检测响应结果和返回 true 或 false。所以你会得到从 Elasticsearch 返回的未封装响应数据，而你不得不对这些数据进行处理。</p>
+<p>这些注意事项也适用于 <code>ping()</code> 方法。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../per_request_configuration/" title="按请求配置" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                按请求配置
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../php_json_objects/" title="PHP 处理 JSON 数组或对象" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                PHP 处理 JSON 数组或对象
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017-2018 <a href="http://flc.io" target="_black">叶子坑</a>
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://flc.io" class="md-footer-social__link fa fa-home"></a>
+    
+      <a href="https://github.com/flc1125" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.583bbe55.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-118478085-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

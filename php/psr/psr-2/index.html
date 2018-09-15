@@ -1,0 +1,2930 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="http://docs.flc.io/php/psr/psr-2/">
+      
+      
+        <meta name="author" content="Flc">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>PHP PSR-2 代码风格规范 - 叶子坑-文档库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../../#php-psr-2" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://docs.flc.io" title="叶子坑-文档库" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                叶子坑-文档库
+              </span>
+              <span class="md-header-nav__topic">
+                PHP PSR-2 代码风格规范
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/flc1125/docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="首页" class="md-tabs__link">
+        首页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/7.2.x/" title="PHP" class="md-tabs__link">
+          PHP
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../elasticsearch/elasticsearch-6.3/translation-instructions/" title="Elasticsearch" class="md-tabs__link">
+          Elasticsearch
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../devops/docker/" title="DevOps" class="md-tabs__link">
+          DevOps
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../more/git/" title="更多" class="md-tabs__link">
+          更多
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://docs.flc.io" title="叶子坑-文档库" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    叶子坑-文档库
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/flc1125/docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      PHP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        PHP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      PHP 各版本特性
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        PHP 各版本特性
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/7.2.x/" title="PHP 7.2.x" class="md-nav__link">
+      PHP 7.2.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/7.1.x/" title="PHP 7.1.x" class="md-nav__link">
+      PHP 7.1.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/7.0.x/" title="PHP 7.0.x" class="md-nav__link">
+      PHP 7.0.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.6.x/" title="PHP 5.6.x" class="md-nav__link">
+      PHP 5.6.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.5.x/" title="PHP 5.5.x" class="md-nav__link">
+      PHP 5.5.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.4.x/" title="PHP 5.4.x" class="md-nav__link">
+      PHP 5.4.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.3.x/" title="PHP 5.3.x" class="md-nav__link">
+      PHP 5.3.x
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+    
+    <label class="md-nav__link" for="nav-2-2">
+      PHP PSR 编码规范
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        PHP PSR 编码规范
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-0/" title="PHP PSR-0 自动加载规范" class="md-nav__link">
+      PHP PSR-0 自动加载规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-1/" title="PHP PSR-1 基本代码规范" class="md-nav__link">
+      PHP PSR-1 基本代码规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        PHP PSR-2 代码风格规范
+      </label>
+    
+    <a href="./" title="PHP PSR-2 代码风格规范" class="md-nav__link md-nav__link--active">
+      PHP PSR-2 代码风格规范
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="1. 概览" class="md-nav__link">
+    1. 概览
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" title="1.1. 例子" class="md-nav__link">
+    1.1. 例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="2. 通则" class="md-nav__link">
+    2. 通则
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" title="2.1 基本编码准则" class="md-nav__link">
+    2.1 基本编码准则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" title="2.2 文件" class="md-nav__link">
+    2.2 文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" title="2.3. 行" class="md-nav__link">
+    2.3. 行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" title="2.4. 缩进" class="md-nav__link">
+    2.4. 缩进
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-truefalsenull" title="2.5. 关键字 以及 True/False/Null" class="md-nav__link">
+    2.5. 关键字 以及 True/False/Null
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-namespace-use" title="3. namespace 以及 use 声明" class="md-nav__link">
+    3. namespace 以及 use 声明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" title="4. 类、属性和方法" class="md-nav__link">
+    4. 类、属性和方法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" title="4.1. 扩展与继承" class="md-nav__link">
+    4.1. 扩展与继承
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" title="4.2. 属性" class="md-nav__link">
+    4.2. 属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" title="4.3. 方法" class="md-nav__link">
+    4.3. 方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" title="4.4. 方法的参数" class="md-nav__link">
+    4.4. 方法的参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-abstract-final-static" title="4.5. abstract 、 final 、 以及 static" class="md-nav__link">
+    4.5. abstract 、 final 、 以及 static
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" title="4.6. 方法及函数调用" class="md-nav__link">
+    4.6. 方法及函数调用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" title="5. 控制结构" class="md-nav__link">
+    5. 控制结构
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-if-elseif-else" title="5.1. if 、 elseif 和 else" class="md-nav__link">
+    5.1. if 、 elseif 和 else
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-switch-case" title="5.2. switch 和 case" class="md-nav__link">
+    5.2. switch 和 case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-while-do-while" title="5.3. while 和 do while" class="md-nav__link">
+    5.3. while 和 do while
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-for" title="5.4. for" class="md-nav__link">
+    5.4. for
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-foreach" title="5.5. foreach" class="md-nav__link">
+    5.5. foreach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-try-catch" title="5.6. try, catch" class="md-nav__link">
+    5.6. try, catch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" title="6. 闭包" class="md-nav__link">
+    6. 闭包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" title="7. 多行参数" class="md-nav__link">
+    7. 多行参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" title="8. 多接口扩展" class="md-nav__link">
+    8. 多接口扩展
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" title="9. 总结" class="md-nav__link">
+    9. 总结
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-3/" title="PHP PSR-3 日志接口规范" class="md-nav__link">
+      PHP PSR-3 日志接口规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-4/" title="PHP PSR-4 自动载入Autoloader" class="md-nav__link">
+      PHP PSR-4 自动载入Autoloader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-4-examples/" title="PHP PSR-4 相关示例" class="md-nav__link">
+      PHP PSR-4 相关示例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-7/" title="PHP PSR-7 HTTP消息接口" class="md-nav__link">
+      PHP PSR-7 HTTP消息接口
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../phpdoc/" title="PHPDoc 编码注释规范" class="md-nav__link">
+      PHPDoc 编码注释规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-cs-fixer/" title="PHP Coding Standards Fixer" class="md-nav__link">
+      PHP Coding Standards Fixer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      PHP 设计模式全集
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        PHP 设计模式全集
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-2" type="checkbox" id="nav-2-5-2">
+    
+    <label class="md-nav__link" for="nav-2-5-2">
+      创建型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-2">
+        创建型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/AbstractFactory/" title="抽象工厂模式（Abstract Factory）" class="md-nav__link">
+      抽象工厂模式（Abstract Factory）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Builder/" title="建造者模式（Builder）" class="md-nav__link">
+      建造者模式（Builder）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/FactoryMethod/" title="工厂方法模式（Factory Method）" class="md-nav__link">
+      工厂方法模式（Factory Method）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Multiton/" title="多例模式（Multiton）" class="md-nav__link">
+      多例模式（Multiton）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Pool/" title="对象池模式（Pool）" class="md-nav__link">
+      对象池模式（Pool）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Prototype/" title="原型模式（Prototype）" class="md-nav__link">
+      原型模式（Prototype）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/SimpleFactory/" title="简单工厂模式（Simple Factory）" class="md-nav__link">
+      简单工厂模式（Simple Factory）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Singleton/" title="单例模式（Singleton）" class="md-nav__link">
+      单例模式（Singleton）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/StaticFactory/" title="静态工厂模式（Static Factory）" class="md-nav__link">
+      静态工厂模式（Static Factory）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-3" type="checkbox" id="nav-2-5-3">
+    
+    <label class="md-nav__link" for="nav-2-5-3">
+      结构型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-3">
+        结构型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Adapter/" title="适配器模式（Adapter）" class="md-nav__link">
+      适配器模式（Adapter）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Bridge/" title="桥梁模式（Bridge）" class="md-nav__link">
+      桥梁模式（Bridge）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Composite/" title="组合模式（Composite）" class="md-nav__link">
+      组合模式（Composite）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/DataMapper/" title="数据映射模式（Data Mapper）" class="md-nav__link">
+      数据映射模式（Data Mapper）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Decorator/" title="装饰模式（Decorator）" class="md-nav__link">
+      装饰模式（Decorator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/DependencyInjection/" title="依赖注入模式（Dependency Injection）" class="md-nav__link">
+      依赖注入模式（Dependency Injection）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Facade/" title="门面模式（Facade）" class="md-nav__link">
+      门面模式（Facade）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/FluentInterface/" title="流接口模式（Fluent Interface）" class="md-nav__link">
+      流接口模式（Fluent Interface）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Flyweight/" title="享元模式（Flyweight）" class="md-nav__link">
+      享元模式（Flyweight）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Proxy/" title="代理模式（Proxy）" class="md-nav__link">
+      代理模式（Proxy）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Registry/" title="注册模式（Registry）" class="md-nav__link">
+      注册模式（Registry）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-4" type="checkbox" id="nav-2-5-4">
+    
+    <label class="md-nav__link" for="nav-2-5-4">
+      行为型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-4">
+        行为型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/ChainOfResponsibilities/" title="责任链模式（Chain Of Responsibilities）" class="md-nav__link">
+      责任链模式（Chain Of Responsibilities）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Command/" title="命令行模式（Command）" class="md-nav__link">
+      命令行模式（Command）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Iterator/" title="迭代器模式（Iterator）" class="md-nav__link">
+      迭代器模式（Iterator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Mediator/" title="中介者模式（Mediator）" class="md-nav__link">
+      中介者模式（Mediator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Memento/" title="备忘录模式（Memento）" class="md-nav__link">
+      备忘录模式（Memento）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/NullObject/" title="空对象模式（Null Object）" class="md-nav__link">
+      空对象模式（Null Object）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Observer/" title="观察者模式（Observer）" class="md-nav__link">
+      观察者模式（Observer）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Specification/" title="规格模式（Specification）" class="md-nav__link">
+      规格模式（Specification）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/State/" title="状态模式（State）" class="md-nav__link">
+      状态模式（State）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Strategy/" title="策略模式（Strategy）" class="md-nav__link">
+      策略模式（Strategy）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/TemplateMethod/" title="模板方法模式（Template Method）" class="md-nav__link">
+      模板方法模式（Template Method）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Visitor/" title="访问者模式（Visitor）" class="md-nav__link">
+      访问者模式（Visitor）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-5" type="checkbox" id="nav-2-5-5">
+    
+    <label class="md-nav__link" for="nav-2-5-5">
+      更多类型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-5">
+        更多类型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Delegation/" title="委托模式（Delegation）" class="md-nav__link">
+      委托模式（Delegation）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/ServiceLocator/" title="服务定位器模式（Service Locator）" class="md-nav__link">
+      服务定位器模式（Service Locator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Repository/" title="资源库模式（Repository）" class="md-nav__link">
+      资源库模式（Repository）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/EAV/" title="实体属性值模式（EAV 模式）" class="md-nav__link">
+      实体属性值模式（EAV 模式）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-6" type="checkbox" id="nav-2-5-6">
+    
+    <label class="md-nav__link" for="nav-2-5-6">
+      附录
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-6">
+        附录
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Anti-pattern/" title="反面模式（Anti-pattern）" class="md-nav__link">
+      反面模式（Anti-pattern）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/design-pattern-reading/" title="PHP 设计模式阅读清单" class="md-nav__link">
+      PHP 设计模式阅读清单
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Elasticsearch
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Elasticsearch
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Elasticsearch 6.3 - 中文版
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        Elasticsearch 6.3 - 中文版
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-6.3/translation-instructions/" title="翻译说明" class="md-nav__link">
+      翻译说明
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2">
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      入门
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-6.3/getting-started/" title="入门" class="md-nav__link">
+      入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-6.3/basic_concepts/" title="基本概念" class="md-nav__link">
+      基本概念
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Elasticsearch-PHP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Elasticsearch-PHP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/overview/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/quickstart/" title="快速开始" class="md-nav__link">
+      快速开始
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/installation/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/configuration/" title="配置" class="md-nav__link">
+      配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/per_request_configuration/" title="按请求配置" class="md-nav__link">
+      按请求配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/future_mode/" title="Future 模式" class="md-nav__link">
+      Future 模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/php_json_objects/" title="PHP 处理 JSON 数组或对象" class="md-nav__link">
+      PHP 处理 JSON 数组或对象
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/index_management_operations/" title="索引管理" class="md-nav__link">
+      索引管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/indexing_documents/" title="索引文档" class="md-nav__link">
+      索引文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/getting_documents/" title="获取文档" class="md-nav__link">
+      获取文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/updating_documents/" title="更新文档" class="md-nav__link">
+      更新文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/deleting_documents/" title="删除文档" class="md-nav__link">
+      删除文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/search_operations/" title="搜索操作" class="md-nav__link">
+      搜索操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/namespaces/" title="命名空间" class="md-nav__link">
+      命名空间
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/security/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/connection_pool/" title="连接池" class="md-nav__link">
+      连接池
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/selectors/" title="选择器" class="md-nav__link">
+      选择器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/serializers/" title="序列化器" class="md-nav__link">
+      序列化器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/php_version_requirement/" title="PHP 版本需求" class="md-nav__link">
+      PHP 版本需求
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/community_dsls/" title="社区 DSLs" class="md-nav__link">
+      社区 DSLs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      DevOps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        DevOps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Docker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/docker/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1-2" type="checkbox" id="nav-4-1-2">
+    
+    <label class="md-nav__link" for="nav-4-1-2">
+      Dockerfile
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-1-2">
+        Dockerfile
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/docker/dockerfile/php/" title="PHP" class="md-nav__link">
+      PHP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/redis/" title="Redis" class="md-nav__link">
+      Redis
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      更多
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        更多
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/git/" title="Git 常用命令" class="md-nav__link">
+      Git 常用命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      中文技术文档的写作规范
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        中文技术文档的写作规范
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/title/" title="标题" class="md-nav__link">
+      标题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/text/" title="文本" class="md-nav__link">
+      文本
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/paragraph/" title="段落" class="md-nav__link">
+      段落
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/number/" title="数值" class="md-nav__link">
+      数值
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/marks/" title="标点符号" class="md-nav__link">
+      标点符号
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/structure/" title="文档体系" class="md-nav__link">
+      文档体系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/reference/" title="参考链接" class="md-nav__link">
+      参考链接
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="1. 概览" class="md-nav__link">
+    1. 概览
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" title="1.1. 例子" class="md-nav__link">
+    1.1. 例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="2. 通则" class="md-nav__link">
+    2. 通则
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" title="2.1 基本编码准则" class="md-nav__link">
+    2.1 基本编码准则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" title="2.2 文件" class="md-nav__link">
+    2.2 文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" title="2.3. 行" class="md-nav__link">
+    2.3. 行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" title="2.4. 缩进" class="md-nav__link">
+    2.4. 缩进
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-truefalsenull" title="2.5. 关键字 以及 True/False/Null" class="md-nav__link">
+    2.5. 关键字 以及 True/False/Null
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-namespace-use" title="3. namespace 以及 use 声明" class="md-nav__link">
+    3. namespace 以及 use 声明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" title="4. 类、属性和方法" class="md-nav__link">
+    4. 类、属性和方法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" title="4.1. 扩展与继承" class="md-nav__link">
+    4.1. 扩展与继承
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" title="4.2. 属性" class="md-nav__link">
+    4.2. 属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" title="4.3. 方法" class="md-nav__link">
+    4.3. 方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" title="4.4. 方法的参数" class="md-nav__link">
+    4.4. 方法的参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-abstract-final-static" title="4.5. abstract 、 final 、 以及 static" class="md-nav__link">
+    4.5. abstract 、 final 、 以及 static
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" title="4.6. 方法及函数调用" class="md-nav__link">
+    4.6. 方法及函数调用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" title="5. 控制结构" class="md-nav__link">
+    5. 控制结构
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-if-elseif-else" title="5.1. if 、 elseif 和 else" class="md-nav__link">
+    5.1. if 、 elseif 和 else
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-switch-case" title="5.2. switch 和 case" class="md-nav__link">
+    5.2. switch 和 case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-while-do-while" title="5.3. while 和 do while" class="md-nav__link">
+    5.3. while 和 do while
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-for" title="5.4. for" class="md-nav__link">
+    5.4. for
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-foreach" title="5.5. foreach" class="md-nav__link">
+    5.5. foreach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-try-catch" title="5.6. try, catch" class="md-nav__link">
+    5.6. try, catch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" title="6. 闭包" class="md-nav__link">
+    6. 闭包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" title="7. 多行参数" class="md-nav__link">
+    7. 多行参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" title="8. 多接口扩展" class="md-nav__link">
+    8. 多接口扩展
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" title="9. 总结" class="md-nav__link">
+    9. 总结
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flc1125/docs/edit/master/docs/php/psr/psr-2.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="php-psr-2">PHP PSR-2 代码风格规范<a class="headerlink" href="#php-psr-2" title="Permanent link">#</a></h1>
+<p>本篇规范是 <a href="../psr-1/">PSR-1</a> 基本代码规范的继承与扩展。</p>
+<p>本规范希望通过制定一系列规范化PHP代码的规则，以减少在浏览不同作者的代码时，因代码风格的不同而造成不便。</p>
+<p>当多名程序员在多个项目中合作时，就需要一个共同的编码规范，
+而本文中的风格规范源自于多个不同项目代码风格的共同特性，
+因此，本规范的价值在于我们都遵循这个编码风格，而不是在于它本身。</p>
+<p>关键词 “必须”("MUST")、“一定不可/一定不能”("MUST NOT")、“需要”("REQUIRED")、
+“将会”("SHALL")、“不会”("SHALL NOT")、“应该”("SHOULD")、“不该”("SHOULD NOT")、
+“推荐”("RECOMMENDED")、“可以”("MAY")和”可选“("OPTIONAL")的详细描述可参见 <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a> 。</p>
+<h2 id="1">1. 概览<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<ul>
+<li>
+<p>代码<strong>必须</strong>遵循 <a href="../psr-1/">PSR-1</a> 中的编码规范 。</p>
+</li>
+<li>
+<p>代码<strong>必须</strong>使用4个空格符而不是 tab键 进行缩进。</p>
+</li>
+<li>
+<p>每行的字符数<strong>应该</strong>软性保持在80个之内， 理论上<strong>一定不可</strong>多于120个， 但<strong>一定不能</strong>有硬性限制。</p>
+</li>
+<li>
+<p>每个 <code>namespace</code> 命名空间声明语句和 <code>use</code> 声明语句块后面，<strong>必须</strong>插入一个空白行。</p>
+</li>
+<li>
+<p>类的开始花括号(<code>{</code>)<strong>必须</strong>写在其声明后自成一行，结束花括号(<code>}</code>)也<strong>必须</strong>写在其主体后自成一行。</p>
+</li>
+<li>
+<p>方法的开始花括号(<code>{</code>)<strong>必须</strong>写在函数声明后自成一行，结束花括号(<code>}</code>)也<strong>必须</strong>写在函数主体后自成一行。</p>
+</li>
+<li>
+<p>类的属性和方法<strong>必须</strong>添加访问修饰符（<code>private</code>、<code>protected</code> 以及 <code>public</code>）， <code>abstract</code> 以及 <code>final</code> <strong>必须</strong>声明在访问修饰符之前，而 <code>static</code> <strong>必须</strong>声明在访问修饰符之后。</p>
+</li>
+<li>
+<p>控制结构的关键字后<strong>必须</strong>要有一个空格符，而调用方法或函数时则<strong>一定不能</strong>有。</p>
+</li>
+<li>
+<p>控制结构的开始花括号(<code>{</code>)<strong>必须</strong>写在声明的同一行，而结束花括号(<code>}</code>)<strong>必须</strong>写在主体后自成一行。</p>
+</li>
+<li>
+<p>控制结构的开始左括号后和结束右括号前，都<strong>一定不能</strong>有空格符。</p>
+</li>
+</ul>
+<h3 id="11">1.1. 例子<a class="headerlink" href="#11" title="Permanent link">#</a></h3>
+<p>以下例子程序简单地展示了以上大部分规范：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">FooInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">BarClass</span> <span class="k">as</span> <span class="nx">Bar</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">OtherVendor\OtherPackage\BazClass</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Foo</span> <span class="k">extends</span> <span class="nx">Bar</span> <span class="k">implements</span> <span class="nx">FooInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">sampleFunction</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">===</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">bar</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">&gt;</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$foo</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">(</span><span class="nv">$arg1</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">BazClass</span><span class="o">::</span><span class="na">bar</span><span class="p">(</span><span class="nv">$arg2</span><span class="p">,</span> <span class="nv">$arg3</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">final</span> <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// method body</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="2">2. 通则<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<h3 id="21">2.1 基本编码准则<a class="headerlink" href="#21" title="Permanent link">#</a></h3>
+<p>代码<strong>必须</strong>符合 <a href="../psr-1/">PSR-1</a> 中的所有规范。</p>
+<h3 id="22">2.2 文件<a class="headerlink" href="#22" title="Permanent link">#</a></h3>
+<p>所有PHP文件<strong>必须</strong>使用<code>Unix LF (linefeed)</code>作为行的结束符。</p>
+<p>所有PHP文件<strong>必须</strong>以一个空白行作为结束。</p>
+<p>纯PHP代码文件<strong>必须</strong>省略最后的 <code>?&gt;</code> 结束标签。</p>
+<h3 id="23">2.3. 行<a class="headerlink" href="#23" title="Permanent link">#</a></h3>
+<p>行的长度<strong>一定不能</strong>有硬性的约束。</p>
+<p>软性的长度约束<strong>一定</strong>要限制在120个字符以内，若超过此长度，带代码规范检查的编辑器<strong>一定</strong>要发出警告，不过<strong>一定不可</strong>发出错误提示。</p>
+<p>每行<strong>不应该</strong>多于80个字符，大于80字符的行<strong>应该</strong>折成多行。</p>
+<p>非空行后<strong>一定不能</strong>有多余的空格符。</p>
+<p>空行<strong>可以</strong>使得阅读代码更加方便以及有助于代码的分块。</p>
+<p>每行<strong>一定不能</strong>存在多于一条语句。</p>
+<h3 id="24">2.4. 缩进<a class="headerlink" href="#24" title="Permanent link">#</a></h3>
+<p>代码<strong>必须</strong>使用4个空格符的缩进，<strong>一定不能</strong>用 tab键 。</p>
+<blockquote>
+<p>备注: 使用空格而不是tab键缩进的好处在于，
+避免在比较代码差异、打补丁、重阅代码以及注释时产生混淆。
+并且，使用空格缩进，让对齐变得更方便。</p>
+</blockquote>
+<h3 id="25-truefalsenull">2.5. 关键字 以及 True/False/Null<a class="headerlink" href="#25-truefalsenull" title="Permanent link">#</a></h3>
+<p>PHP所有 <a href="http://php.net/manual/en/reserved.keywords.php">关键字</a><strong>必须</strong>全部小写。</p>
+<p>常量 <code>true</code> 、<code>false</code> 和 <code>null</code> 也<strong>必须</strong>全部小写。</p>
+<h2 id="3-namespace-use">3. namespace 以及 use 声明<a class="headerlink" href="#3-namespace-use" title="Permanent link">#</a></h2>
+<p><code>namespace</code> 声明后 必须 插入一个空白行。</p>
+<p>所有 <code>use</code> 必须 在 <code>namespace</code> 后声明。</p>
+<p>每条 <code>use</code> 声明语句 必须 只有一个 <code>use</code> 关键词。</p>
+<p><code>use</code> 声明语句块后 必须 要有一个空白行。</p>
+<p>例如：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">FooClass</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">BarClass</span> <span class="k">as</span> <span class="nx">Bar</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">OtherVendor\OtherPackage\BazClass</span><span class="p">;</span>
+
+<span class="c1">// ... additional PHP code ...</span>
+</pre></div>
+
+<h2 id="4">4. 类、属性和方法<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<p>此处的“类”泛指所有的class类、接口以及traits可复用代码块。</p>
+<h3 id="41">4.1. 扩展与继承<a class="headerlink" href="#41" title="Permanent link">#</a></h3>
+<p>关键词 <code>extends</code> 和 <code>implements</code><strong>必须</strong>写在类名称的同一行。</p>
+<p>类的开始花括号<strong>必须</strong>独占一行，结束花括号也<strong>必须</strong>在类主体后独占一行。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">FooClass</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">BarClass</span> <span class="k">as</span> <span class="nx">Bar</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">OtherVendor\OtherPackage\BazClass</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ClassName</span> <span class="k">extends</span> <span class="nx">ParentClass</span> <span class="k">implements</span> <span class="nx">\ArrayAccess</span><span class="p">,</span> <span class="nx">\Countable</span>
+<span class="p">{</span>
+    <span class="c1">// constants, properties, methods</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><code>implements</code> 的继承列表也<strong>可以</strong>分成多行，这样的话，每个继承接口名称都<strong>必须</strong>分开独立成行，包括第一个。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">FooClass</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">BarClass</span> <span class="k">as</span> <span class="nx">Bar</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">OtherVendor\OtherPackage\BazClass</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ClassName</span> <span class="k">extends</span> <span class="nx">ParentClass</span> <span class="k">implements</span>
+    <span class="nx">\ArrayAccess</span><span class="p">,</span>
+    <span class="nx">\Countable</span><span class="p">,</span>
+    <span class="nx">\Serializable</span>
+<span class="p">{</span>
+    <span class="c1">// constants, properties, methods</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="42">4.2. 属性<a class="headerlink" href="#42" title="Permanent link">#</a></h3>
+<p>每个属性都<strong>必须</strong>添加访问修饰符。</p>
+<p><strong>一定不可</strong>使用关键字 <code>var</code> 声明一个属性。</p>
+<p>每条语句<strong>一定不可</strong>定义超过一个属性。</p>
+<p><strong>不要</strong>使用下划线作为前缀，来区分属性是 protected 或 private。</p>
+<p>以下是属性声明的一个范例：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ClassName</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$foo</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="43">4.3. 方法<a class="headerlink" href="#43" title="Permanent link">#</a></h3>
+<p>所有方法都<strong>必须</strong>添加访问修饰符。</p>
+<p><strong>不要</strong>使用下划线作为前缀，来区分方法是 protected 或 private。</p>
+<p>方法名称后<strong>一定不能</strong>有空格符，其开始花括号<strong>必须</strong>独占一行，结束花括号也<strong>必须</strong>在方法主体后单独成一行。参数左括号后和右括号前<strong>一定不能</strong>有空格。</p>
+<p>一个标准的方法声明可参照以下范例，留意其括号、逗号、空格以及花括号的位置。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ClassName</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">fooBarBaz</span><span class="p">(</span><span class="nv">$arg1</span><span class="p">,</span> <span class="o">&amp;</span><span class="nv">$arg2</span><span class="p">,</span> <span class="nv">$arg3</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="c1">// method body</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="44">4.4. 方法的参数<a class="headerlink" href="#44" title="Permanent link">#</a></h3>
+<p>参数列表中，每个逗号后面<strong>必须</strong>要有一个空格，而逗号前面<strong>一定不能</strong>有空格。</p>
+<p>有默认值的参数，<strong>必须</strong>放到参数列表的末尾。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ClassName</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$arg1</span><span class="p">,</span> <span class="o">&amp;</span><span class="nv">$arg2</span><span class="p">,</span> <span class="nv">$arg3</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="c1">// method body</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>参数列表<strong>可以</strong>分列成多行，这样，包括第一个参数在内的每个参数都<strong>必须</strong>单独成行。</p>
+<p>拆分成多行的参数列表后，结束括号以及方法开始花括号 必须 写在同一行，中间用一个空格分隔。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ClassName</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">aVeryLongMethodName</span><span class="p">(</span>
+        <span class="nx">ClassTypeHint</span> <span class="nv">$arg1</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="nv">$arg2</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$arg3</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// method body</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="45-abstract-final-static">4.5. <code>abstract</code> 、 <code>final</code> 、 以及 <code>static</code><a class="headerlink" href="#45-abstract-final-static" title="Permanent link">#</a></h3>
+<p>需要添加 <code>abstract</code> 或 <code>final</code> 声明时， <strong>必须</strong>写在访问修饰符前，而 <code>static</code> 则<strong>必须</strong>写在其后。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Vendor\Package</span><span class="p">;</span>
+
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">ClassName</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$foo</span><span class="p">;</span>
+
+    <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">zim</span><span class="p">();</span>
+
+    <span class="k">final</span> <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// method body</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="46">4.6. 方法及函数调用<a class="headerlink" href="#46" title="Permanent link">#</a></h3>
+<p>方法及函数调用时，方法名或函数名与参数左括号之间<strong>一定不能</strong>有空格，参数右括号前也 <strong>一定不能</strong>有空格。每个逗号前<strong>一定不能</strong>有空格，但其后<strong>必须</strong>有一个空格。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nx">bar</span><span class="p">();</span>
+<span class="nv">$foo</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">(</span><span class="nv">$arg1</span><span class="p">);</span>
+<span class="nx">Foo</span><span class="o">::</span><span class="na">bar</span><span class="p">(</span><span class="nv">$arg2</span><span class="p">,</span> <span class="nv">$arg3</span><span class="p">);</span>
+</pre></div>
+
+<p>参数<strong>可以</strong>分列成多行，此时包括第一个参数在内的每个参数都<strong>必须</strong>单独成行。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$foo</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">(</span>
+    <span class="nv">$longArgument</span><span class="p">,</span>
+    <span class="nv">$longerArgument</span><span class="p">,</span>
+    <span class="nv">$muchLongerArgument</span>
+<span class="p">);</span>
+</pre></div>
+
+<h2 id="5">5. 控制结构<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<p>控制结构的基本规范如下：</p>
+<ul>
+<li>控制结构关键词后<strong>必须</strong>有一个空格。</li>
+<li>左括号 <code>(</code> 后<strong>一定不能</strong>有空格。</li>
+<li>右括号 <code>)</code> 前也<strong>一定不</strong>能有空格。</li>
+<li>右括号 <code>)</code> 与开始花括号 <code>{</code> 间<strong>一定</strong>有一个空格。</li>
+<li>结构体主体<strong>一定</strong>要有一次缩进。</li>
+<li>结束花括号 <code>}</code> <strong>一定</strong>在结构体主体后单独成行。</li>
+</ul>
+<p>每个结构体的主体都<strong>必须</strong>被包含在成对的花括号之中，
+这能让结构体更加结构话，以及减少加入新行时，出错的可能性。</p>
+<h3 id="51-if-elseif-else">5.1. <code>if</code> 、 <code>elseif</code> 和 <code>else</code><a class="headerlink" href="#51-if-elseif-else" title="Permanent link">#</a></h3>
+<p>标准的 <code>if</code> 结构如下代码所示，留意 括号、空格以及花括号的位置，
+注意 <code>else</code> 和 <code>elseif</code> 都与前面的结束花括号在同一行。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$expr1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// if body</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$expr2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// elseif body</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// else body;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>应该</strong>使用关键词 <code>elseif</code> 代替所有 <code>else if</code> ，以使得所有的控制关键字都像是单独的一个词。 </p>
+<h3 id="52-switch-case">5.2. <code>switch</code> 和 <code>case</code><a class="headerlink" href="#52-switch-case" title="Permanent link">#</a></h3>
+<p>标准的 <code>switch</code> 结构如下代码所示，留意括号、空格以及花括号的位置。
+<code>case</code> 语句<strong>必须</strong>相对 <code>switch</code> 进行一次缩进，而 <code>break</code> 语句以及 <code>case</code> 内的其它语句都 必须 相对 <code>case</code> 进行一次缩进。
+如果存在非空的 <code>case</code> 直穿语句，主体里必须有类似 <code>// no break</code> 的注释。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">switch</span> <span class="p">(</span><span class="nv">$expr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+        <span class="k">echo</span> <span class="s1">&#39;First case, with a break&#39;</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+        <span class="k">echo</span> <span class="s1">&#39;Second case, which falls through&#39;</span><span class="p">;</span>
+        <span class="c1">// no break</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+    <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+        <span class="k">echo</span> <span class="s1">&#39;Third case, return instead of break&#39;</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="k">echo</span> <span class="s1">&#39;Default case&#39;</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="53-while-do-while">5.3. <code>while</code> 和 <code>do while</code><a class="headerlink" href="#53-while-do-while" title="Permanent link">#</a></h3>
+<p>一个规范的 <code>while</code> 语句应该如下所示，注意其 括号、空格以及花括号的位置。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$expr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// structure body</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>标准的 <code>do while</code> 语句如下所示，同样的，注意其 括号、空格以及花括号的位置。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// structure body;</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$expr</span><span class="p">);</span>
+</pre></div>
+
+<h3 id="54-for">5.4. <code>for</code><a class="headerlink" href="#54-for" title="Permanent link">#</a></h3>
+<p>标准的 <code>for</code> 语句如下所示，注意其 括号、空格以及花括号的位置。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// for body</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="55-foreach">5.5. <code>foreach</code><a class="headerlink" href="#55-foreach" title="Permanent link">#</a></h3>
+<p>标准的 <code>foreach</code> 语句如下所示，注意其 括号、空格以及花括号的位置。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$iterable</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// foreach body</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="56-try-catch">5.6. <code>try</code>, <code>catch</code><a class="headerlink" href="#56-try-catch" title="Permanent link">#</a></h3>
+<p>标准的 <code>try catch</code> 语句如下所示，注意其 括号、空格以及花括号的位置。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// try body</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">FirstExceptionType</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// catch body</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">OtherExceptionType</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// catch body</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="6">6. 闭包<a class="headerlink" href="#6" title="Permanent link">#</a></h2>
+<p>闭包声明时，关键词 <code>function</code> 后以及关键词 <code>use</code> 的前后都<strong>必须</strong>要有一个空格。</p>
+<p>开始花括号<strong>必须</strong>写在声明的同一行，结束花括号<strong>必须</strong>紧跟主体结束的下一行。</p>
+<p>参数列表和变量列表的左括号后以及右括号前，<strong>必须不能</strong>有空格。</p>
+<p>参数和变量列表中，逗号前<strong>必须不能</strong>有空格，而逗号后<strong>必须</strong>要有空格。</p>
+<p>闭包中有默认值的参数<strong>必须</strong>放到列表的后面。</p>
+<p>标准的闭包声明语句如下所示，注意其 括号、逗号、空格以及花括号的位置。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$closureWithArgs</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$arg1</span><span class="p">,</span> <span class="nv">$arg2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// body</span>
+<span class="p">};</span>
+
+<span class="nv">$closureWithArgsAndVars</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$arg1</span><span class="p">,</span> <span class="nv">$arg2</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$var1</span><span class="p">,</span> <span class="nv">$var2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// body</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>参数列表以及变量列表<strong>可以</strong>分成多行，这样，包括第一个在内的每个参数或变量都<strong>必须</strong>单独成行，而列表的右括号与闭包的开始花括号<strong>必须</strong>放在同一行。</p>
+<p>以下几个例子，包含了参数和变量列表被分成多行的多情况。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$longArgs_noVars</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span>
+    <span class="nv">$longArgument</span><span class="p">,</span>
+    <span class="nv">$longerArgument</span><span class="p">,</span>
+    <span class="nv">$muchLongerArgument</span>
+<span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// body</span>
+<span class="p">};</span>
+
+<span class="nv">$noArgs_longVars</span> <span class="o">=</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span>
+    <span class="nv">$longVar1</span><span class="p">,</span>
+    <span class="nv">$longerVar2</span><span class="p">,</span>
+    <span class="nv">$muchLongerVar3</span>
+<span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// body</span>
+<span class="p">};</span>
+
+<span class="nv">$longArgs_longVars</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span>
+    <span class="nv">$longArgument</span><span class="p">,</span>
+    <span class="nv">$longerArgument</span><span class="p">,</span>
+    <span class="nv">$muchLongerArgument</span>
+<span class="p">)</span> <span class="k">use</span> <span class="p">(</span>
+    <span class="nv">$longVar1</span><span class="p">,</span>
+    <span class="nv">$longerVar2</span><span class="p">,</span>
+    <span class="nv">$muchLongerVar3</span>
+<span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// body</span>
+<span class="p">};</span>
+
+<span class="nv">$longArgs_shortVars</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span>
+    <span class="nv">$longArgument</span><span class="p">,</span>
+    <span class="nv">$longerArgument</span><span class="p">,</span>
+    <span class="nv">$muchLongerArgument</span>
+<span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$var1</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// body</span>
+<span class="p">};</span>
+
+<span class="nv">$shortArgs_longVars</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$arg</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span>
+    <span class="nv">$longVar1</span><span class="p">,</span>
+    <span class="nv">$longerVar2</span><span class="p">,</span>
+    <span class="nv">$muchLongerVar3</span>
+<span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// body</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>注意，闭包被直接用作函数或方法调用的参数时，以上规则仍然适用。</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$foo</span><span class="o">-&gt;</span><span class="na">bar</span><span class="p">(</span>
+    <span class="nv">$arg1</span><span class="p">,</span>
+    <span class="k">function</span> <span class="p">(</span><span class="nv">$arg2</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$var1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// body</span>
+    <span class="p">},</span>
+    <span class="nv">$arg3</span>
+<span class="p">);</span>
+</pre></div>
+
+<h2 id="7">7. 多行参数<a class="headerlink" href="#7" title="Permanent link">#</a></h2>
+<p>使用一个或多个跨行的参数（如数组和匿名函数）并不需要触发 4.6 节中关于参数列表的单行规定，
+因此，在参数表中的数组和匿名函数是可以单独分列成多行的。</p>
+<p>以下的例子是符合 PSR-2 规范的：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nx">somefunction</span><span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="p">[</span>
+  <span class="c1">// ...</span>
+<span class="p">],</span> <span class="nv">$baz</span><span class="p">);</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/hello/{name}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$app</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="k">return</span> <span class="s1">&#39;Hello &#39;</span><span class="o">.</span><span class="nv">$app</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span> 
+<span class="p">});</span>
+</pre></div>
+
+<h2 id="8">8. 多接口扩展<a class="headerlink" href="#8" title="Permanent link">#</a></h2>
+<p>当需要扩展多个接口时，<code>extends</code> 的相关规范与 4.1 节中 <code>implements</code> 的规范一致。</p>
+<h2 id="9">9. 总结<a class="headerlink" href="#9" title="Permanent link">#</a></h2>
+<p>以上规范难免有疏忽，其中包括但不仅限于：</p>
+<ul>
+<li>全局变量和常量的定义</li>
+<li>函数的定义</li>
+<li>操作符和赋值</li>
+<li>行内对齐</li>
+<li>注释和文档描述块</li>
+<li>类名的前缀及后缀</li>
+<li>最佳实践</li>
+</ul>
+<hr />
+<p>原文：</p>
+<ul>
+<li><a href="https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-cn.md">https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-cn.md</a></li>
+<li><a href="https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-meta-cn.md">https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-meta-cn.md</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../psr-1/" title="PHP PSR-1 基本代码规范" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                PHP PSR-1 基本代码规范
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../psr-3/" title="PHP PSR-3 日志接口规范" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                PHP PSR-3 日志接口规范
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017-2018 <a href="http://flc.io" target="_black">叶子坑</a>
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://flc.io" class="md-footer-social__link fa fa-home"></a>
+    
+      <a href="https://github.com/flc1125" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.583bbe55.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-118478085-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

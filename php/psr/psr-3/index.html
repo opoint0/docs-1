@@ -1,0 +1,2448 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="http://docs.flc.io/php/psr/psr-3/">
+      
+      
+        <meta name="author" content="Flc">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>PHP PSR-3 日志接口规范 - 叶子坑-文档库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../../#php-psr-3" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://docs.flc.io" title="叶子坑-文档库" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                叶子坑-文档库
+              </span>
+              <span class="md-header-nav__topic">
+                PHP PSR-3 日志接口规范
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/flc1125/docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="首页" class="md-tabs__link">
+        首页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/7.2.x/" title="PHP" class="md-tabs__link">
+          PHP
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../elasticsearch/elasticsearch-6.3/translation-instructions/" title="Elasticsearch" class="md-tabs__link">
+          Elasticsearch
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../devops/docker/" title="DevOps" class="md-tabs__link">
+          DevOps
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../more/git/" title="更多" class="md-tabs__link">
+          更多
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://docs.flc.io" title="叶子坑-文档库" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    叶子坑-文档库
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/flc1125/docs/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      PHP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        PHP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      PHP 各版本特性
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        PHP 各版本特性
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/7.2.x/" title="PHP 7.2.x" class="md-nav__link">
+      PHP 7.2.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/7.1.x/" title="PHP 7.1.x" class="md-nav__link">
+      PHP 7.1.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/7.0.x/" title="PHP 7.0.x" class="md-nav__link">
+      PHP 7.0.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.6.x/" title="PHP 5.6.x" class="md-nav__link">
+      PHP 5.6.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.5.x/" title="PHP 5.5.x" class="md-nav__link">
+      PHP 5.5.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.4.x/" title="PHP 5.4.x" class="md-nav__link">
+      PHP 5.4.x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/5.3.x/" title="PHP 5.3.x" class="md-nav__link">
+      PHP 5.3.x
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+    
+    <label class="md-nav__link" for="nav-2-2">
+      PHP PSR 编码规范
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        PHP PSR 编码规范
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-0/" title="PHP PSR-0 自动加载规范" class="md-nav__link">
+      PHP PSR-0 自动加载规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-1/" title="PHP PSR-1 基本代码规范" class="md-nav__link">
+      PHP PSR-1 基本代码规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-2/" title="PHP PSR-2 代码风格规范" class="md-nav__link">
+      PHP PSR-2 代码风格规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        PHP PSR-3 日志接口规范
+      </label>
+    
+    <a href="./" title="PHP PSR-3 日志接口规范" class="md-nav__link md-nav__link--active">
+      PHP PSR-3 日志接口规范
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="1. 规范说明" class="md-nav__link">
+    1. 规范说明
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" title="1.1 基本规范" class="md-nav__link">
+    1.1 基本规范
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" title="1.2 记录信息" class="md-nav__link">
+    1.2 记录信息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" title="1.3 上下文" class="md-nav__link">
+    1.3 上下文
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" title="1.4 助手类和接口" class="md-nav__link">
+    1.4 助手类和接口
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="2. 包" class="md-nav__link">
+    2. 包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-psrlogloggerinterface" title="3. Psr\Log\LoggerInterface" class="md-nav__link">
+    3. Psr\Log\LoggerInterface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-psrlogloggerawareinterface" title="4. Psr\Log\LoggerAwareInterface" class="md-nav__link">
+    4. Psr\Log\LoggerAwareInterface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-psrlogloglevel" title="5. Psr\Log\LogLevel" class="md-nav__link">
+    5. Psr\Log\LogLevel
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-4/" title="PHP PSR-4 自动载入Autoloader" class="md-nav__link">
+      PHP PSR-4 自动载入Autoloader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-4-examples/" title="PHP PSR-4 相关示例" class="md-nav__link">
+      PHP PSR-4 相关示例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../psr-7/" title="PHP PSR-7 HTTP消息接口" class="md-nav__link">
+      PHP PSR-7 HTTP消息接口
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../phpdoc/" title="PHPDoc 编码注释规范" class="md-nav__link">
+      PHPDoc 编码注释规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-cs-fixer/" title="PHP Coding Standards Fixer" class="md-nav__link">
+      PHP Coding Standards Fixer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      PHP 设计模式全集
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        PHP 设计模式全集
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-2" type="checkbox" id="nav-2-5-2">
+    
+    <label class="md-nav__link" for="nav-2-5-2">
+      创建型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-2">
+        创建型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/AbstractFactory/" title="抽象工厂模式（Abstract Factory）" class="md-nav__link">
+      抽象工厂模式（Abstract Factory）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Builder/" title="建造者模式（Builder）" class="md-nav__link">
+      建造者模式（Builder）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/FactoryMethod/" title="工厂方法模式（Factory Method）" class="md-nav__link">
+      工厂方法模式（Factory Method）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Multiton/" title="多例模式（Multiton）" class="md-nav__link">
+      多例模式（Multiton）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Pool/" title="对象池模式（Pool）" class="md-nav__link">
+      对象池模式（Pool）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Prototype/" title="原型模式（Prototype）" class="md-nav__link">
+      原型模式（Prototype）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/SimpleFactory/" title="简单工厂模式（Simple Factory）" class="md-nav__link">
+      简单工厂模式（Simple Factory）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Singleton/" title="单例模式（Singleton）" class="md-nav__link">
+      单例模式（Singleton）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/StaticFactory/" title="静态工厂模式（Static Factory）" class="md-nav__link">
+      静态工厂模式（Static Factory）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-3" type="checkbox" id="nav-2-5-3">
+    
+    <label class="md-nav__link" for="nav-2-5-3">
+      结构型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-3">
+        结构型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Adapter/" title="适配器模式（Adapter）" class="md-nav__link">
+      适配器模式（Adapter）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Bridge/" title="桥梁模式（Bridge）" class="md-nav__link">
+      桥梁模式（Bridge）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Composite/" title="组合模式（Composite）" class="md-nav__link">
+      组合模式（Composite）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/DataMapper/" title="数据映射模式（Data Mapper）" class="md-nav__link">
+      数据映射模式（Data Mapper）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Decorator/" title="装饰模式（Decorator）" class="md-nav__link">
+      装饰模式（Decorator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/DependencyInjection/" title="依赖注入模式（Dependency Injection）" class="md-nav__link">
+      依赖注入模式（Dependency Injection）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Facade/" title="门面模式（Facade）" class="md-nav__link">
+      门面模式（Facade）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/FluentInterface/" title="流接口模式（Fluent Interface）" class="md-nav__link">
+      流接口模式（Fluent Interface）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Flyweight/" title="享元模式（Flyweight）" class="md-nav__link">
+      享元模式（Flyweight）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Proxy/" title="代理模式（Proxy）" class="md-nav__link">
+      代理模式（Proxy）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Registry/" title="注册模式（Registry）" class="md-nav__link">
+      注册模式（Registry）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-4" type="checkbox" id="nav-2-5-4">
+    
+    <label class="md-nav__link" for="nav-2-5-4">
+      行为型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-4">
+        行为型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/ChainOfResponsibilities/" title="责任链模式（Chain Of Responsibilities）" class="md-nav__link">
+      责任链模式（Chain Of Responsibilities）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Command/" title="命令行模式（Command）" class="md-nav__link">
+      命令行模式（Command）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Iterator/" title="迭代器模式（Iterator）" class="md-nav__link">
+      迭代器模式（Iterator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Mediator/" title="中介者模式（Mediator）" class="md-nav__link">
+      中介者模式（Mediator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Memento/" title="备忘录模式（Memento）" class="md-nav__link">
+      备忘录模式（Memento）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/NullObject/" title="空对象模式（Null Object）" class="md-nav__link">
+      空对象模式（Null Object）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Observer/" title="观察者模式（Observer）" class="md-nav__link">
+      观察者模式（Observer）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Specification/" title="规格模式（Specification）" class="md-nav__link">
+      规格模式（Specification）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/State/" title="状态模式（State）" class="md-nav__link">
+      状态模式（State）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Strategy/" title="策略模式（Strategy）" class="md-nav__link">
+      策略模式（Strategy）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/TemplateMethod/" title="模板方法模式（Template Method）" class="md-nav__link">
+      模板方法模式（Template Method）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Visitor/" title="访问者模式（Visitor）" class="md-nav__link">
+      访问者模式（Visitor）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-5" type="checkbox" id="nav-2-5-5">
+    
+    <label class="md-nav__link" for="nav-2-5-5">
+      更多类型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-5">
+        更多类型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Delegation/" title="委托模式（Delegation）" class="md-nav__link">
+      委托模式（Delegation）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/ServiceLocator/" title="服务定位器模式（Service Locator）" class="md-nav__link">
+      服务定位器模式（Service Locator）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Repository/" title="资源库模式（Repository）" class="md-nav__link">
+      资源库模式（Repository）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/EAV/" title="实体属性值模式（EAV 模式）" class="md-nav__link">
+      实体属性值模式（EAV 模式）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5-6" type="checkbox" id="nav-2-5-6">
+    
+    <label class="md-nav__link" for="nav-2-5-6">
+      附录
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-6">
+        附录
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/Anti-pattern/" title="反面模式（Anti-pattern）" class="md-nav__link">
+      反面模式（Anti-pattern）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../php-design-patterns/design-pattern-reading/" title="PHP 设计模式阅读清单" class="md-nav__link">
+      PHP 设计模式阅读清单
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Elasticsearch
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Elasticsearch
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Elasticsearch 6.3 - 中文版
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        Elasticsearch 6.3 - 中文版
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-6.3/translation-instructions/" title="翻译说明" class="md-nav__link">
+      翻译说明
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2">
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      入门
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-6.3/getting-started/" title="入门" class="md-nav__link">
+      入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-6.3/basic_concepts/" title="基本概念" class="md-nav__link">
+      基本概念
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Elasticsearch-PHP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Elasticsearch-PHP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/overview/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/quickstart/" title="快速开始" class="md-nav__link">
+      快速开始
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/installation/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/configuration/" title="配置" class="md-nav__link">
+      配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/per_request_configuration/" title="按请求配置" class="md-nav__link">
+      按请求配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/future_mode/" title="Future 模式" class="md-nav__link">
+      Future 模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/php_json_objects/" title="PHP 处理 JSON 数组或对象" class="md-nav__link">
+      PHP 处理 JSON 数组或对象
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/index_management_operations/" title="索引管理" class="md-nav__link">
+      索引管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/indexing_documents/" title="索引文档" class="md-nav__link">
+      索引文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/getting_documents/" title="获取文档" class="md-nav__link">
+      获取文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/updating_documents/" title="更新文档" class="md-nav__link">
+      更新文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/deleting_documents/" title="删除文档" class="md-nav__link">
+      删除文档
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/search_operations/" title="搜索操作" class="md-nav__link">
+      搜索操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/namespaces/" title="命名空间" class="md-nav__link">
+      命名空间
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/security/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/connection_pool/" title="连接池" class="md-nav__link">
+      连接池
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/selectors/" title="选择器" class="md-nav__link">
+      选择器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/serializers/" title="序列化器" class="md-nav__link">
+      序列化器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/php_version_requirement/" title="PHP 版本需求" class="md-nav__link">
+      PHP 版本需求
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../elasticsearch/elasticsearch-php/community_dsls/" title="社区 DSLs" class="md-nav__link">
+      社区 DSLs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      DevOps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        DevOps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Docker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/docker/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1-2" type="checkbox" id="nav-4-1-2">
+    
+    <label class="md-nav__link" for="nav-4-1-2">
+      Dockerfile
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-1-2">
+        Dockerfile
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/docker/dockerfile/php/" title="PHP" class="md-nav__link">
+      PHP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../devops/redis/" title="Redis" class="md-nav__link">
+      Redis
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      更多
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        更多
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/git/" title="Git 常用命令" class="md-nav__link">
+      Git 常用命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      中文技术文档的写作规范
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        中文技术文档的写作规范
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/" title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/title/" title="标题" class="md-nav__link">
+      标题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/text/" title="文本" class="md-nav__link">
+      文本
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/paragraph/" title="段落" class="md-nav__link">
+      段落
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/number/" title="数值" class="md-nav__link">
+      数值
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/marks/" title="标点符号" class="md-nav__link">
+      标点符号
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/structure/" title="文档体系" class="md-nav__link">
+      文档体系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../more/document-style-guide/reference/" title="参考链接" class="md-nav__link">
+      参考链接
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="1. 规范说明" class="md-nav__link">
+    1. 规范说明
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" title="1.1 基本规范" class="md-nav__link">
+    1.1 基本规范
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" title="1.2 记录信息" class="md-nav__link">
+    1.2 记录信息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" title="1.3 上下文" class="md-nav__link">
+    1.3 上下文
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" title="1.4 助手类和接口" class="md-nav__link">
+    1.4 助手类和接口
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="2. 包" class="md-nav__link">
+    2. 包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-psrlogloggerinterface" title="3. Psr\Log\LoggerInterface" class="md-nav__link">
+    3. Psr\Log\LoggerInterface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-psrlogloggerawareinterface" title="4. Psr\Log\LoggerAwareInterface" class="md-nav__link">
+    4. Psr\Log\LoggerAwareInterface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-psrlogloglevel" title="5. Psr\Log\LogLevel" class="md-nav__link">
+    5. Psr\Log\LogLevel
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flc1125/docs/edit/master/docs/php/psr/psr-3.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="php-psr-3">PHP PSR-3 日志接口规范<a class="headerlink" href="#php-psr-3" title="Permanent link">#</a></h1>
+<p>本文制定了日志类库的通用接口规范。</p>
+<p>本规范的主要目的，是为了让日志类库以简单通用的方式，通过接收一个 <code>Psr\Log\LoggerInterface</code> 对象，来记录日志信息。
+框架以及CMS内容管理系统如有需要，<strong>可以</strong>对此接口进行扩展，但需遵循本规范，
+这才能保证在使用第三方的类库文件时，日志接口仍能正常对接。</p>
+<p>关键词 “必须”("MUST")、“一定不可/一定不能”("MUST NOT")、“需要”("REQUIRED")、
+“将会”("SHALL")、“不会”("SHALL NOT")、“应该”("SHOULD")、“不该”("SHOULD NOT")、
+“推荐”("RECOMMENDED")、“可以”("MAY")和”可选“("OPTIONAL")的详细描述可参见 <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a> 。</p>
+<p>本文中的 <code>实现者</code> 指的是实现了 <code>LoggerInterface</code> 接口的类库或者框架，反过来讲，他们就是 <code>LoggerInterface</code> 的 <code>使用者</code>。</p>
+<h2 id="1">1. 规范说明<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<h3 id="11">1.1 基本规范<a class="headerlink" href="#11" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p><code>LoggerInterface</code> 接口对外定义了八个方法，分别用来记录 <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a> 中定义的八个等级的日志：debug、 info、 notice、 warning、 error、 critical、 alert 以及 emergency 。</p>
+</li>
+<li>
+<p>第九个方法 —— <code>log</code>，其第一个参数为记录的等级。可使用一个预先定义的等级常量作为参数来调用此方法，<strong>必须</strong>与直接调用以上八个方法具有相同的效果。如果传入的等级常量参数没有预先定义，则<strong>必须</strong>抛出 <code>Psr\Log\InvalidArgumentException</code> 类型的异常。在不确定的情况下，使用者<strong>不该</strong>使用未支持的等级常量来调用此方法。</p>
+</li>
+</ul>
+<h3 id="12">1.2 记录信息<a class="headerlink" href="#12" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p>以上每个方法都接受一个字符串类型或者是有 <code>__toString()</code> 方法的对象作为记录信息参数，这样，实现者就能把它当成字符串来处理，否则实现者<strong>必须</strong>自己把它转换成字符串。</p>
+</li>
+<li>
+<p>记录信息参数<strong>可以</strong>携带占位符，实现者<strong>可以</strong>根据上下文将其它替换成相应的值。</p>
+</li>
+</ul>
+<p>其中占位符<strong>必须</strong>与上下文数组中的键名保持一致。</p>
+<p>占位符的名称<strong>必须</strong>由一个左花括号 <code>{</code> 以及一个右括号 <code>}</code> 包含。但花括号与名称之间<strong>一定不能</strong>有空格符。</p>
+<p>占位符的名称<strong>应该</strong>只由 <code>A-Z</code>、 <code>a-z</code>,<code>0-9</code>、下划线 <code>_</code>、以及英文的句号 <code>.</code>组成，其它字符作为将来占位符规范的保留。</p>
+<p>实现者<strong>可以</strong>通过对占位符采用不同的转义和转换策略，来生成最终的日志。
+  而使用者在不知道上下文的前提下，<strong>不该</strong>提前转义占位符。</p>
+<p>以下是一个占位符使用的例子：</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * 用上下文信息替换记录信息中的占位符</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">interpolate</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// 构建一个花括号包含的键名的替换数组</span>
+    <span class="nv">$replace</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$context</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$replace</span><span class="p">[</span><span class="s1">&#39;{&#39;</span> <span class="o">.</span> <span class="nv">$key</span> <span class="o">.</span> <span class="s1">&#39;}&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$val</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 替换记录信息中的占位符，最后返回修改后的记录信息。</span>
+    <span class="k">return</span> <span class="nb">strtr</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$replace</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 含有带花括号占位符的记录信息。</span>
+<span class="nv">$message</span> <span class="o">=</span> <span class="s2">&quot;User {username} created&quot;</span><span class="p">;</span>
+
+<span class="c1">// 带有替换信息的上下文数组，键名为占位符名称，键值为替换值。</span>
+<span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bolivar&#39;</span><span class="p">);</span>
+
+<span class="c1">// 输出 &quot;Username bolivar created&quot;</span>
+<span class="k">echo</span> <span class="nx">interpolate</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+</pre></div>
+
+<h3 id="13">1.3 上下文<a class="headerlink" href="#13" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p>每个记录函数都接受一个上下文数组参数，用来装载字符串类型无法表示的信息。它<strong>可以</strong>装载任何信息，所以实现者<strong>必须</strong>确保能正确处理其装载的信息，对于其装载的数据，<strong>一定不能</strong> 抛出异常，或产生PHP出错、警告或提醒信息（error、warning、notice）。</p>
+</li>
+<li>
+<p>如需通过上下文参数传入了一个 <code>Exception</code> 对象， <strong>必须</strong>以 <code>'exception'</code> 作为键名。
+记录异常信息是很普遍的，所以如果它能够在记录类库的底层实现，就能够让实现者从异常信息中抽丝剥茧。
+当然，实现者在使用它时，<strong>必须</strong>确保键名为 <code>'exception'</code> 的键值是否真的是一个 <code>Exception</code>，毕竟它<strong>可以</strong>装载任何信息。</p>
+</li>
+</ul>
+<h3 id="14">1.4 助手类和接口<a class="headerlink" href="#14" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p><code>Psr\Log\AbstractLogger</code> 类使得只需继承它和实现其中的 <code>log</code> 方法，就能够很轻易地实现 <code>LoggerInterface</code> 接口，而另外八个方法就能够把记录信息和上下文信息传给它。</p>
+</li>
+<li>
+<p>同样地，使用  <code>Psr\Log\LoggerTrait</code>  也只需实现其中的 <code>log</code> 方法。不过，需要特别注意的是，在traits可复用代码块还不能实现接口前，还需要  <code>implement LoggerInterface</code>。</p>
+</li>
+<li>
+<p>在没有可用的日志记录器时， <code>Psr\Log\NullLogger</code> 接口<strong>可以</strong>为使用者提供一个备用的日志“黑洞”。不过，当上下文的构建非常消耗资源时，带条件检查的日志记录或许是更好的办法。</p>
+</li>
+<li>
+<p><code>Psr\Log\LoggerAwareInterface</code> 接口仅包括一个
+  <code>setLogger(LoggerInterface $logger)</code> 方法，框架可以使用它实现自动连接任意的日志记录实例。</p>
+</li>
+<li>
+<p><code>Psr\Log\LoggerAwareTrait</code> trait可复用代码块可以在任何的类里面使用，只需通过它提供的 <code>$this-&gt;logger</code>，就可以轻松地实现等同的接口。</p>
+</li>
+<li>
+<p><code>Psr\Log\LogLevel</code> 类装载了八个记录等级常量。</p>
+</li>
+</ul>
+<h2 id="2">2. 包<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<p>上述的接口、类和相关的异常类，以及一系列的实现检测文件，都包含在 <a href="https://packagist.org/packages/psr/log">psr/log</a> 文件包中。</p>
+<h2 id="3-psrlogloggerinterface">3. <code>Psr\Log\LoggerInterface</code><a class="headerlink" href="#3-psrlogloggerinterface" title="Permanent link">#</a></h2>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Psr\Log</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * 日志记录实例</span>
+<span class="sd"> *</span>
+<span class="sd"> * 日志信息变量 —— message， **必须**是一个字符串或是实现了  __toString() 方法的对象。</span>
+<span class="sd"> *</span>
+<span class="sd"> * 日志信息变量中**可以**包含格式如 “{foo}” (代表foo) 的占位符，</span>
+<span class="sd"> * 它将会由上下文数组中键名为 &quot;foo&quot; 的键值替代。</span>
+<span class="sd"> *</span>
+<span class="sd"> * 上下文数组可以携带任意的数据，唯一的限制是，当它携带的是一个 exception 对象时，它的键名 必须 是 &quot;exception&quot;。</span>
+<span class="sd"> *</span>
+<span class="sd"> * 详情可参阅： https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-3-logger-interface-cn.md</span>
+<span class="sd"> */</span>
+<span class="k">interface</span> <span class="nx">LoggerInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 系统不可用</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">emergency</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * **必须**立刻采取行动</span>
+<span class="sd">     *</span>
+<span class="sd">     * 例如：在整个网站都垮掉了、数据库不可用了或者其他的情况下，**应该**发送一条警报短信把你叫醒。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">alert</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 紧急情况</span>
+<span class="sd">     *</span>
+<span class="sd">     * 例如：程序组件不可用或者出现非预期的异常。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">critical</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 运行时出现的错误，不需要立刻采取行动，但必须记录下来以备检测。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 出现非错误性的异常。</span>
+<span class="sd">     *</span>
+<span class="sd">     * 例如：使用了被弃用的API、错误地使用了API或者非预想的不必要错误。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">warning</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 一般性重要的事件。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">notice</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 重要事件</span>
+<span class="sd">     *</span>
+<span class="sd">     * 例如：用户登录和SQL记录。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">info</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * debug 详情</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 任意等级的日志记录</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param mixed $level</span>
+<span class="sd">     * @param string $message</span>
+<span class="sd">     * @param array $context</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="k">array</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="4-psrlogloggerawareinterface">4. <code>Psr\Log\LoggerAwareInterface</code><a class="headerlink" href="#4-psrlogloggerawareinterface" title="Permanent link">#</a></h2>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Psr\Log</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * logger-aware 定义实例</span>
+<span class="sd"> */</span>
+<span class="k">interface</span> <span class="nx">LoggerAwareInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 设置一个日志记录实例</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param LoggerInterface $logger</span>
+<span class="sd">     * @return null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setLogger</span><span class="p">(</span><span class="nx">LoggerInterface</span> <span class="nv">$logger</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="5-psrlogloglevel">5. <code>Psr\Log\LogLevel</code><a class="headerlink" href="#5-psrlogloglevel" title="Permanent link">#</a></h2>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Psr\Log</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * 日志等级常量定义</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">LogLevel</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">EMERGENCY</span> <span class="o">=</span> <span class="s1">&#39;emergency&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">ALERT</span>     <span class="o">=</span> <span class="s1">&#39;alert&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">CRITICAL</span>  <span class="o">=</span> <span class="s1">&#39;critical&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">ERROR</span>     <span class="o">=</span> <span class="s1">&#39;error&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">WARNING</span>   <span class="o">=</span> <span class="s1">&#39;warning&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">NOTICE</span>    <span class="o">=</span> <span class="s1">&#39;notice&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">INFO</span>      <span class="o">=</span> <span class="s1">&#39;info&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">DEBUG</span>     <span class="o">=</span> <span class="s1">&#39;debug&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<p>原文：</p>
+<ul>
+<li><a href="https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-3-logger-interface-cn.md">https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-3-logger-interface-cn.md</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../psr-2/" title="PHP PSR-2 代码风格规范" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                PHP PSR-2 代码风格规范
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../psr-4/" title="PHP PSR-4 自动载入Autoloader" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                PHP PSR-4 自动载入Autoloader
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017-2018 <a href="http://flc.io" target="_black">叶子坑</a>
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://flc.io" class="md-footer-social__link fa fa-home"></a>
+    
+      <a href="https://github.com/flc1125" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.583bbe55.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-118478085-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
